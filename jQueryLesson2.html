@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="script/jquery-1.7.2.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("form>input").click(function () {
+                $(this).hide(1000);
+                $(this).show(1000);
+            })
+
+            $("#btn1").click(function () {
+                alert("btn1----click");
+                $("p:first").text("我是第一段文字")
+                $("label+input").hide(1000);
+            });
+
+            $("#btn2").click(function () {
+                $("ul li:even").text("选择了偶数");
+            })
+
+            $("#btn3").click(function () {
+                $("ul li:lt(3)").addClass("selected");
+                $(":button").hide(1000);
+                $(":input").hide(1000);
+            })
+        })
+    </script>
+    <style type="text/css">
+        .selected {
+            background: #cccccc;
+            border: #f2f2f2 1px solid;
+        }
+    </style>
+</head>
+<body>
+<p>这是第一个jQuery程序,你用的开发工具是?</p>
+<ul>
+    <li class="list">Dreamever</li>
+    <li class="list">notepad++</li>
+    <li class="list">eclipse</li>
+    <li class="list">editplus</li>
+</ul>
+<input id="btn1" type="button" value="按钮一"/>
+<input id="btn2" type="button" value="按钮二"/>
+<input id="btn3" type="button" value="按钮三"/>
+
+<form>
+    <label id="lab">我是一个lab</label>
+    用户名:<input id="username" type="text"/>
+    密码:<input id="password" type="text"/>
+
+</form>
+</body>
+</html>

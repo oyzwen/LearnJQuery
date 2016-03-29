@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Jquery.iml" filepath="$PROJECT_DIR$/Jquery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LearnJQuery.iml" filepath="$PROJECT_DIR$/LearnJQuery.iml" />
     </modules>
   </component>
 </project>
