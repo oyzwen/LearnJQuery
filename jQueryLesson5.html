@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <script src="script/jquery-1.7.2.js" type="text/javascript"></script>
+    <title>jQuery Lesson 5</title>
+    <!--购物车 添加 删除功能-->
+    <script type="text/javascript">
+        $(function () {
+
+            $("#shoppingcart").hide();
+            $("input[name='add']").click(function () {
+                var id = $(this).parent().parent().children("td").eq(0).html();
+
+                var isAdded = false;
+
+                $("ul li").each(function () {
+                    var tempId = $(this).attr("id");
+                    if (tempId == id) {
+                        isAdded = true;
+                        alert("------该物品已在购物车,请勿重复添加!-------id:" + tempId);
+                        return;
+                    }
+                })
+
+                if (isAdded)return;
+
+                var name = $(this).parent().parent().children("td").eq(1).html();
+                var intro = $(this).parent().parent().children("td").eq(2).html();
+
+
+                var li = "<li id=" + id + ">" + name + "------" + intro + "<button class='btnDel' style='width:100px;height:30px'>删除</button>" + "</li>";
+
+                $("ul").append(li);
+
+                btnDelHandler();
+            })
+            $("#btnShoppingcart").toggle(function () {
+                $("#shoppingcart").show();
+            }, function () {
+                $("#shoppingcart").hide();
+            })
+
+            function btnDelHandler() {
+                $(".btnDel").click(function () {
+                    $(this).parent().remove();
+                })
+            }
+
+        })
+    </script>
+    <style type="text/css">
+        .btnDel {
+            margin: 0px 0px 10px 20px;
+        }
+
+        table {
+            margin: 0px;
+            padding: 0px;
+            border-collapse: collapse;
+
+        }
+
+        table tr th {
+            margin: 20px;
+            padding: 15px 40px;
+            border: #cae6e4 1px solid;
+        }
+
+        table tr td {
+            margin: 20px;
+            padding: 15px 40px;
+            border: #cae6e4 1px solid;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<table cellspacing="0px" cellpadding="0px">
+    <tr>
+        <th class="title">序号</th>
+        <th class="title">名称</th>
+        <th class="title">简介</th>
+        <th class="title">操作</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>外套</td>
+        <td>外贸原单</td>
+        <td><input type="button" value="添加到购物车" name="add"/></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>裙子</td>
+        <td>淑女风范</td>
+        <td><input type="button" value="添加到购物车" name="add"/></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>T恤</td>
+        <td>型男必备</td>
+        <td><input type="button" value="添加到购物车" name="add"/></td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>风衣</td>
+        <td>炫酷造型</td>
+        <td><input type="button" value="添加到购物车" name="add"/></td>
+    </tr>
+</table>
+<br><br><br><br><br>
+<button class="btn" style="width:100px;height:30px" id="btnShoppingcart">查看购物车</button>
+
+<br><br>
+<div id="shoppingcart"><p>购物车</p><br>
+    <ul></ul>
+</div>
+
+
+</body>
+</html>

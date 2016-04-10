@@ -2,72 +2,194 @@
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
+    <title>jQuery Lesson 4</title>
+    <!--1.鼠标移入移出p标签,显示/隐藏图片-->
+    <!--2.用键盘控制一个div,上下移动,每次10px-->
     <script src="script/jquery-1.7.2.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
-            var curNum = 0;
-            show(1)
-//            alert($("li").first().text())
-//            alert($("ul li").eq(3).text());
 
+            $("#img").hide();
+
+            $("#showText").mouseover(function () {
+                $("#img").show(100);
+            });
+            $("#showText").mouseout(function () {
+                $("#img").hide(100);
+            });
+
+            var w = 30;
+            var i = 50;
+
+            $(window).keydown(function (event) {
+                switch (event.keyCode) {
+                    //左箭头按下
+                    case 37:
+                        showPrevious();
+                        break
+
+                    //上箭头按下
+                    case 38:
+                        i -= 10;
+                        $("#showTextContainer").offset({left: w, top: i});
+                        break
+
+                    //右箭头按下
+                    case 39:
+                        showNext();
+                        break
+
+                    //下箭头按下
+                    case 40:
+                        i += 10;
+
+                        $("#showTextContainer").offset({left: w, top: i});
+
+//                       $("#showTextContainer").css("positon","absolute");
+//                        $("#showTextContainer").css("top",20 + "px");
+                        break
+
+//                    default: alert("您按下的是"+event.keyCode+",what are you 弄啥咧!");
+                }
+
+            })
+            //------------------------------练习区-----------------------------------------------------
+
+            var curNum = 0;
+            show(1);
+
+
+            $("ul li").mouseover(function () {
+//                alert("ol li mouseover!")
+                $(this).css("background", "#ff6666");
+            });
+            $("ul li").mouseout(function () {
+//                alert("ol li mouseout!")
+                $(this).css("background", "#fff");
+            });
 
             $("#displayText").text();
 
             $("#btnReset").mouseover(
-                    function(){
+                    function () {
                         alert("mouseOver!!!!!!!")
                     }
             )
 
-            $("#btnPrevious").click(function (){
-                show(curNum++);
-
+            $("#btnPrevious").click(function () {
+                showPrevious();
             })
 
-            $("#btnNext").click(function (){
-                show(curNum++);
+            $("#btnNext").click(function () {
+                showNext();
             })
 
-            function  show(a){
-               // alert("test!!!!!!!!"+$("ul li").eq(a).text())
-                if(a>=3)a=3;
-                if(a<0)a=0
-                $("#displayText").text($("ul li").eq(a).text());
+            function showPrevious() {
+                curNum -= 1;
+                show(curNum);
             }
+
+            function showNext() {
+                curNum += 1;
+                show(curNum);
+            }
+
+            function show(a) {
+                // alert("test!!!!!!!!"+$("ul li").eq(a).text())
+                //var n = a;
+                if (a > 3) curNum = 0;
+                if (a < 0) curNum = 3;
+//                alert(curNum)
+                $("#displayText").text($("ul li").eq(curNum).text());
+            }
+
 
         })
     </script>
     <style type="text/css">
+        #imgContainer {
+            float: left;
+            /*border: #00fff0 1px solid;*/
+            /*width:20px;*/
+            /*height:40px;*/
+        }
+
+        #img {
+            position: absolute;
+
+            width: 20px;
+            height: 20px;
+            margin: 0;
+            padding: 0;
+            /*border: #00ff00 1px solid;*/
+        }
+
+        #showTextContainer {
+            float: left;
+            /*width: 400px;*/
+            /*height:100px;*/
+            margin: 0px 0px 0px 25px;
+            /*border: #eee000 1px solid;*/
+        }
+
+        #showText {
+            /*display: inline;*/
+            /*float: left;*/
+            margin: 0px;
+            padding: 0;
+            /*border: #00ff00 1px solid;*/
+
+        }
+
+        #parctice {
+            clear: both;
+        }
+
         .selected {
             background: #cccccc;
             border: #f2f2f2 1px solid;
         }
-        .displayArea{
+
+        .displayArea {
             width: 200px;
             height: 200px;
             background: #cae6e4;
         }
-        #temp{
-            width:auto;
+
+        #temp {
+            width: auto;
             height: 80px;
         }
-        #displayText{
-            width:auto;
+
+        #displayText {
+            width: auto;
             /*margin: 0px auto;*/
             text-align: center;
         }
-        .btn{
+
+        .btn {
             background: #e9504a;
             border-radius: 10px;
             border: none;
             color: #f2f2f2;
             font-size: 14px;
         }
+
+        .list {
+            list-style: none;
+        }
+
+
     </style>
 </head>
 <body>
+<p>----------------------------------------作业-------------------------------------------</p>
+
+<div id="imgContainer"><img id="img" src="img/test.png"/></div>
+<div id="showTextContainer"><p id="showText" style="float: left">鼠标滑到这里显示图片</p></div>
+
+<p id="parctice"><br><br><br><br><br><br>----------------------------------------练习-------------------------------------------
+</p>
 <p>这是第一个jQuery程序,你用的开发工具是?</p>
 <ul>
     <li class="list">Dreamever</li>
@@ -79,6 +201,14 @@
     <div id="temp"></div>
     <p id="displayText">ddd</p>
 </div>
+
+
+<ol>
+    <li class="list">Dreamever</li>
+    <li class="list">notepad++</li>
+    <li class="list">eclipse</li>
+    <li class="list">editplus</li>
+</ol>
 <br/>
 <button class="btn" style="width:100px;height:30px" id="btnPrevious">上一页</button>
 <button class="btn" id="btnNext" style="width: 100px; height: 30px;">下一页</button>

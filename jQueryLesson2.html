@@ -2,8 +2,8 @@
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
+    <title>jQuery Lesson 2</title>
+    <!--分别用基本 层次 过滤 表单四种选择器中任选三个不同函数实现练习-->
     <script src="script/jquery-1.7.2.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
@@ -13,7 +13,6 @@
             })
 
             $("#btn1").click(function () {
-                alert("btn1----click");
                 $("p:first").text("我是第一段文字")
                 $("label+input").hide(1000);
             });
@@ -24,8 +23,8 @@
 
             $("#btn3").click(function () {
                 $("ul li:lt(3)").addClass("selected");
-                $(":button").hide(1000);
-                $(":input").hide(1000);
+                $("form").hide(1000);
+                $("form").show(1000);
             })
         })
     </script>
@@ -47,12 +46,11 @@
 <input id="btn1" type="button" value="按钮一"/>
 <input id="btn2" type="button" value="按钮二"/>
 <input id="btn3" type="button" value="按钮三"/>
-
+<br><br>
 <form>
     <label id="lab">我是一个lab</label>
-    用户名:<input id="username" type="text"/>
-    密码:<input id="password" type="text"/>
-
+    用户名: <input id="username" type="text"/>
+    密码: <input id="password" type="text"/>
 </form>
 </body>
 </html>

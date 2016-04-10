@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <script src="script/jquery-1.7.2.js" type="text/javascript"></script>
+    <title>jQuery Lesson 6</title>
+    <!--写一个注册表单,上面有用户名 密码 年龄 性别 爱好[唱歌 跳舞 游泳 摄影 全选和反选功能],实现用户可录入信息和显示提交的相关信息-->
+    <script type="text/javascript">
+        $(function () {
+            $("#btnShowResult").click(function () {
+                var textUsername = $("input[name='username']").val();
+                var textPassword = $("input[name='password']").val();
+                var textAge = $("input[name='age']").val();
+                var textSex = $("input[name='sex']:checked").val();
+
+                var textHobby = "";
+                $("input[name='hobby']:checked").each(function () {
+                    textHobby += $(this).val() + ",";
+                })
+                textHobby = textHobby.substring(0, textHobby.length - 1);//去掉最后的","
+
+                var textCity = $("select[name='city']").val();
+
+                $("label[name='labUsername']").text(textUsername);
+                $("label[name='labPassword']").text(textPassword);
+                $("label[name='labAge']").text(textAge);
+                $("label[name='labSex']").text(textSex);
+                $("label[name='labHobby']").text(textHobby);
+                $("label[name='labCity']").text(textCity);
+
+            })
+
+            //全选
+            $("#btnSelectedAll").click(function () {
+                $("input[name='hobby']:checkbox").each(function () {
+                    $(this).prop("checked", true);
+                })
+            })
+            //反选
+            $("#btnSelectedOther").click(function () {
+                $("input[name='hobby']:checkbox").each(function () {
+                    $(this).prop("checked", !$(this).prop("checked"));
+                })
+            })
+        })
+    </script>
+
+</head>
+<body>
+<p>注册信息</p>
+<form>
+    用户名: <input type="text" name="username"/><br/><br/>
+    密 码: <input type="password" name="password"/><br/><br/>
+    年 龄: <input type="number"  name="age"/><br/><br/>
+    性 别: <input type="radio" value="男" name="sex"/>男&nbsp&nbsp
+    <input type="radio" value="女" name="sex"/>女<br/><br/>
+
+    城市&nbsp:<select name="city">
+    <option value="北京">北京</option>
+    <option value="上海">上海</option>
+    <option value="广州">广州</option>
+    <option value="深圳">深圳</option>
+</select><br><br>
+
+    爱 好: <input type="checkbox" name="hobby" value="唱歌"/>唱歌&nbsp&nbsp
+    <input type="checkbox" name="hobby" value="跳舞"/>跳舞&nbsp&nbsp
+    <input type="checkbox" name="hobby" value="游泳"/>游泳&nbsp&nbsp
+    <input type="checkbox" name="hobby" value="摄影"/>摄影
+    <br><br>
+
+</form>
+<button class="btn" style="width:100px;height:30px" id="btnSelectedAll">全选</button>
+<button class="btn" style="width:100px;height:30px" id="btnSelectedOther">反选</button>
+<br><br><br>
+<button class="btn" style="width:100px;height:30px" id="btnShowResult">显示结果</button>
+<br><br>
+<p>显示信息</p><br>
+用户名:&nbsp<label name="labUsername"></label><br><br>
+密码:&nbsp<label name="labPassword"></label><br><br>
+年龄:&nbsp<label name="labAge"></label><br><br>
+性别:&nbsp<label name="labSex"></label><br><br>
+爱好:&nbsp<label name="labHobby"></label><br><br>
+城市:&nbsp<label name="labCity"></label><br><br>
+</body>
+</html>
