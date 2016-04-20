@@ -35,11 +35,6 @@
 
                 btnDelHandler();
             })
-            $("#btnShoppingcart").toggle(function () {
-                $("#shoppingcart").show();
-            }, function () {
-                $("#shoppingcart").hide();
-            })
 
             function btnDelHandler() {
                 $(".btnDel").click(function () {
@@ -47,6 +42,11 @@
                 })
             }
 
+            $("#btnShoppingcart").toggle(function () {
+                $("#shoppingcart").show();
+            }, function () {
+                $("#shoppingcart").hide();
+            })
         })
     </script>
     <style type="text/css">

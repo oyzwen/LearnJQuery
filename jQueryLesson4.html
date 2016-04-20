@@ -18,8 +18,7 @@
                 $("#img").hide(100);
             });
 
-            var w = 30;
-            var i = 50;
+            var pos = $("#showTextContainer").offset();
 
             $(window).keydown(function (event) {
                 switch (event.keyCode) {
@@ -30,8 +29,8 @@
 
                     //上箭头按下
                     case 38:
-                        i -= 10;
-                        $("#showTextContainer").offset({left: w, top: i});
+                        pos.top -= 10;
+                        $("#showTextContainer").offset(pos);
                         break
 
                     //右箭头按下
@@ -41,14 +40,9 @@
 
                     //下箭头按下
                     case 40:
-                        i += 10;
-
-                        $("#showTextContainer").offset({left: w, top: i});
-
-//                       $("#showTextContainer").css("positon","absolute");
-//                        $("#showTextContainer").css("top",20 + "px");
+                        pos.top += 10;
+                        $("#showTextContainer").offset(pos);
                         break
-
 //                    default: alert("您按下的是"+event.keyCode+",what are you 弄啥咧!");
                 }
 
